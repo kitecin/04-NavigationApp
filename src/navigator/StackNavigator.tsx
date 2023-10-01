@@ -22,7 +22,7 @@ export const StackNavigator = () => {
           elevation: 0, //Propiedad exclusiva de Android
           shadowColor: 'transparent', //Propiedad exclusiva de IOS
         },
-        headerShown: true,
+        headerShown: false,
         cardStyle: {
           backgroundColor: 'white',
         },

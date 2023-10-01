@@ -18,6 +18,7 @@ export const DrawerNavigator = () => {
     <Drawer.Navigator
       screenOptions={{
         drawerType: dimensions.width >= 768 ? 'permanent' : 'front',
+        headerTitle: 'Menu', //modify the Title of the Stack Navigator
       }}
       drawerContent={props => <MenuInterno {...props} />}>
       <Drawer.Screen name="StackNavigator" component={StackNavigator} />
