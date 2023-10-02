@@ -9,6 +9,7 @@ import {SettingsScreen} from '../screens/SettingsScreen';
 import {useWindowDimensions} from 'react-native';
 import {Text, View, Image, TouchableOpacity} from 'react-native';
 import {styles} from '../theme/appTheme';
+import {BottomTabs} from './BottomTabsNavigator';
 
 const Drawer = createDrawerNavigator();
 
@@ -21,7 +22,7 @@ export const DrawerNavigator = () => {
         headerTitle: 'Menu', //modify the Title of the Stack Navigator
       }}
       drawerContent={props => <MenuInterno {...props} />}>
-      <Drawer.Screen name="StackNavigator" component={StackNavigator} />
+      <Drawer.Screen name="BottomTabs" component={BottomTabs} />
       <Drawer.Screen name="Settings" component={SettingsScreen} />
     </Drawer.Navigator>
   );
@@ -43,8 +44,8 @@ const MenuInterno = ({navigation}: DrawerContentComponentProps) => {
       <View style={styles.menuContainer}>
         <TouchableOpacity
           style={styles.menuContTouch}
-          onPress={() => navigation.navigate('StackNavigator')}>
-          <Text style={styles.menuContText}>Navegación</Text>
+          onPress={() => navigation.navigate('BottomTabs')}>
+          <Text style={styles.menuContText}>BottomTabs</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.menuContTouch}
