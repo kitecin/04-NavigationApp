@@ -10,6 +10,7 @@ import {useWindowDimensions} from 'react-native';
 import {Text, View, Image, TouchableOpacity} from 'react-native';
 import {styles} from '../theme/appTheme';
 import {BottomTabs} from './BottomTabsNavigator';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const Drawer = createDrawerNavigator();
 
@@ -43,14 +44,16 @@ const MenuInterno = ({navigation}: DrawerContentComponentProps) => {
       {/* Opciones del menu*/}
       <View style={styles.menuContainer}>
         <TouchableOpacity
-          style={styles.menuContTouch}
+          style={{...styles.menuContTouch, flexDirection: 'row'}}
           onPress={() => navigation.navigate('BottomTabs')}>
-          <Text style={styles.menuContText}>BottomTabs</Text>
+          <Icon name="compass-outline" size={20} color="black" />
+          <Text style={styles.menuContText}> Navigation</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.menuContTouch}
+          style={{...styles.menuContTouch, flexDirection: 'row'}}
           onPress={() => navigation.navigate('Settings')}>
-          <Text style={styles.menuContText}>Settings</Text>
+          <Icon name="settings-outline" size={20} color="black" />
+          <Text style={styles.menuContText}> Settings</Text>
         </TouchableOpacity>
       </View>
     </DrawerContentScrollView>
