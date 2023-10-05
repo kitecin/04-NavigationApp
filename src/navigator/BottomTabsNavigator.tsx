@@ -4,13 +4,67 @@ import Tab1Screen from '../screens/Tab1Screen';
 import Tab2Screen from '../screens/Tab2Screen';
 import {StackNavigator} from './StackNavigator';
 import {colors} from '../theme/appTheme';
-import {Text} from 'react-native';
-
-const Tab = createBottomTabNavigator();
+import {Platform, Text} from 'react-native';
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 
 export const BottomTabs = () => {
+  return Platform.OS === 'ios' ? <BottomTabsIOS /> : <BottomTabsAndroid />;
+};
+
+//Bottom Tab only for Android
+const TabsAndroid = createMaterialBottomTabNavigator();
+
+export const BottomTabsAndroid = () => {
   return (
-    <Tab.Navigator
+    <TabsAndroid.Navigator
+      sceneAnimationEnabled={true}
+      barStyle={{
+        backgroundColor: colors.primary,
+      }}
+      screenOptions={({route}) => ({
+        tabBarIcon: ({color, focused}) => {
+          let iconName: string = '';
+          switch (route.name) {
+            case 'Tab1Screen':
+              iconName = 'T1';
+              break;
+
+            case 'Tab2Screen':
+              iconName = 'T2';
+              break;
+
+            case 'StackNavigator':
+              iconName = 'ST';
+              break;
+          }
+          return <Text style={{color}}>{iconName}</Text>;
+        },
+      })}>
+      <TabsAndroid.Screen
+        name="Tab1Screen"
+        options={{title: 'Tab1'}}
+        component={Tab1Screen}
+      />
+      <TabsAndroid.Screen
+        name="Tab2Screen"
+        options={{title: 'Tab2'}}
+        component={Tab2Screen}
+      />
+      <TabsAndroid.Screen
+        name="StackNavigator"
+        options={{title: 'Stack'}}
+        component={StackNavigator}
+      />
+    </TabsAndroid.Navigator>
+  );
+};
+
+// Bottom Tab only for iOS
+const TabsIOS = createBottomTabNavigator();
+
+export const BottomTabsIOS = () => {
+  return (
+    <TabsIOS.Navigator
       sceneContainerStyle={{
         backgroundColor: 'white',
       }}
@@ -50,21 +104,21 @@ export const BottomTabs = () => {
         }}
         component={Tab1Screen}
       /> */}
-      <Tab.Screen
+      <TabsIOS.Screen
         name="Tab1Screen"
         options={{title: 'Tab1'}}
         component={Tab1Screen}
       />
-      <Tab.Screen
+      <TabsIOS.Screen
         name="Tab2Screen"
         options={{title: 'Tab2'}}
         component={Tab2Screen}
       />
-      <Tab.Screen
+      <TabsIOS.Screen
         name="StackNavigator"
         options={{title: 'Stack'}}
         component={StackNavigator}
       />
-    </Tab.Navigator>
+    </TabsIOS.Navigator>
   );
 };
